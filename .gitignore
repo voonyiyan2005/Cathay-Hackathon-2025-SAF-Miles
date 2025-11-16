@@ -1,0 +1,9 @@
+node_modules/ 
+__pycache__/ 
+*.pkl   # Optional, to exclude the model file
+node_modules/ 
+__pycache__/ 
+*.pkl 
+node_modules/ 
+__pycache__/ 
+*.pkl 

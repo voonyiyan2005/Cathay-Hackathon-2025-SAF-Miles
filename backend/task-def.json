@@ -1,0 +1,31 @@
+{
+  "family": "saf-predictor-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::625655517578:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::625655517578:role/ecsTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "saf-predictor",
+      "image": "625655517578.dkr.ecr.ap-southeast-1.amazonaws.com/saf-predictor:latest",
+      "essential": true,
+      "portMappings": [{"containerPort": 8000, "hostPort": 8000}],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/saf-predictor",
+          "awslogs-region": "ap-southeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      }
+    }
+  ]
+}
