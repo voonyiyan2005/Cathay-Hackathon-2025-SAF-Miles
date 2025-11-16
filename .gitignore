@@ -7,3 +7,6 @@ __pycache__/
 node_modules/ 
 __pycache__/ 
 *.pkl 
+node_modules/ 
+__pycache__/ 
+*.pkl 
